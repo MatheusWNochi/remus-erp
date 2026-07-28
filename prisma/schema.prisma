@@ -11,3 +11,71 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+model authUser {
+  id           String    @id @db.Uuid
+  username     String    @unique
+  password     String
+  firstName    String    @map("first_name")
+  lastName     String    @map("last_name")
+  createdAt    DateTime  @map("created_at")
+  deletedBy    String?   @map("deleted_by") @db.Uuid
+  deletedAt    DateTime? @map("deleted_at")
+  enterpriseId String    @map("enterprise_id") @db.Uuid
+  roleId       String    @map("role_id") @db.Uuid
+  isDeveloper  Boolean   @default(false)
+
+  enterprise         enterprise   @relation("EnterpriseUsers", fields: [enterpriseId], references: [id])
+  role               authRole     @relation(fields: [roleId], references: [id])
+  deletedByUser      authUser?    @relation("UserDeletedBy", fields: [deletedBy], references: [id])
+  deletedUsers       authUser[]   @relation("UserDeletedBy")
+  createdEnterprises enterprise[] @relation("EnterpriseCreatedBy")
+  deletedEnterprises enterprise[] @relation("EnterpriseDeletedBy")
+
+  @@map("auth_user")
+}
+
+model enterprise {
+  id        String    @id @db.Uuid
+  name      String
+  createdAt DateTime  @map("created_at")
+  deletedAt DateTime? @map("deleted_at")
+  createdBy String    @map("created_by") @db.Uuid
+  deletedBy String?   @map("deleted_by") @db.Uuid
+
+  creator authUser   @relation("EnterpriseCreatedBy", fields: [createdBy], references: [id])
+  deleter authUser?  @relation("EnterpriseDeletedBy", fields: [deletedBy], references: [id])
+  users   authUser[] @relation("EnterpriseUsers")
+
+  @@map("remus_enterprise")
+}
+
+model authRole {
+  id   String @id @db.Uuid
+  name String
+
+  users           authUser[]
+  rolePermissions rolePermissions[]
+
+  @@map("auth_role")
+}
+
+model authPermission {
+  id   String @id @db.Uuid
+  code String
+
+  rolePermissions rolePermissions[]
+
+  @@map("auth_permission")
+}
+
+model rolePermissions {
+  roleId       String @db.Uuid
+  permissionId String @db.Uuid
+
+  role       authRole       @relation(fields: [roleId], references: [id])
+  permission authPermission @relation(fields: [permissionId], references: [id])
+
+  @@unique([roleId, permissionId])
+  @@map("auth_role_permission")
+}
