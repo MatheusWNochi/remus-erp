@@ -14,7 +14,7 @@ datasource db {
 
 model authUser {
   id           String    @id @db.Uuid
-  username     String    @unique
+  email        String    @unique
   password     String
   firstName    String    @map("first_name")
   lastName     String    @map("last_name")

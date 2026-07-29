@@ -2,5 +2,21 @@
   "HomePage": {
     "title": "Welcome to Remus ERP",
     "description": "Edit src/app/[locale]/page.tsx to get started."
+  },
+  "Auth": {
+    "Login": {
+      "welcomeTitle": "Welcome back",
+      "welcomeDescription": "Sign in to manage your operations, track your data and keep your business running smoothly, all in one place.",
+      "title": "Sign in",
+      "subtitle": "Enter your credentials to access your account.",
+      "emailLabel": "Email",
+      "passwordLabel": "Password",
+      "submit": "Sign in",
+      "errors": {
+        "email": "Enter a valid email address.",
+        "password": "Password is required.",
+        "invalidCredentials": "Invalid email or password."
+      }
+    }
   }
 }

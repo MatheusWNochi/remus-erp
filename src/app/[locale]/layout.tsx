@@ -5,6 +5,8 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import ThemeRegistry from "@/lib/ThemeRegistry";
 import "./globals.css";
+import { AuthProvider, SessionProvider } from "@/modules/auth/context/provider";
+import { getSession } from "next-auth/react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,10 +27,7 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export default async function RootLayout({
-  children,
-  params,
-}: Readonly<{
+export default async function RootLayout({ children, params }: Readonly<{
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
 }>) {
@@ -37,15 +36,23 @@ export default async function RootLayout({
     notFound();
   }
 
+  const session = await getSession()
+
   return (
     <html
       lang={locale}
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <NextIntlClientProvider>
-          <ThemeRegistry>{children}</ThemeRegistry>
-        </NextIntlClientProvider>
+        <ThemeRegistry>
+          <NextIntlClientProvider>
+            <SessionProvider refetchInterval={5 * 60} session={session}>
+              <AuthProvider>
+                {children}
+              </AuthProvider>
+            </SessionProvider>
+          </NextIntlClientProvider>
+        </ThemeRegistry>
       </body>
     </html>
   );
