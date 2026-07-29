@@ -4,9 +4,10 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import ThemeRegistry from "@/lib/ThemeRegistry";
-import "./globals.css";
 import { AuthProvider, SessionProvider } from "@/modules/auth/context/provider";
-import { getSession } from "next-auth/react";
+import { SettingsProvider } from "@/modules/settings/context/provider";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/modules/auth/config/next-auth";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,7 +37,7 @@ export default async function RootLayout({ children, params }: Readonly<{
     notFound();
   }
 
-  const session = await getSession()
+  const session = await getServerSession(authOptions);
 
   return (
     <html
@@ -48,7 +49,9 @@ export default async function RootLayout({ children, params }: Readonly<{
           <NextIntlClientProvider>
             <SessionProvider refetchInterval={5 * 60} session={session}>
               <AuthProvider>
-                {children}
+                <SettingsProvider>
+                  {children}
+                </SettingsProvider>
               </AuthProvider>
             </SessionProvider>
           </NextIntlClientProvider>
