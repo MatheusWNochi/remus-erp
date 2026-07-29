@@ -18,7 +18,7 @@ export function GuestGuard({ children }: Props) {
   const { isAuthenticated, isPending } = useAuth();
   const [isChecking, setIsChecking] = useState(true);
 
-  const returnTo = searchParams.get('returnTo') || '/app';
+  const returnTo = searchParams.get('returnTo') || '/dashboard';
 
   const checkPermissions = useCallback(() => {
     if (isPending) {

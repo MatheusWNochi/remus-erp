@@ -28,7 +28,7 @@ function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { signIn } = useAuth();
-  const returnTo = searchParams.get('returnTo') || '/app';
+  const returnTo = searchParams.get('returnTo') || '/dashboard';
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

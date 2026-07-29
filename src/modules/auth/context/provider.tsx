@@ -32,7 +32,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     return _signIn('credentials', {
       email,
       password,
-      callbackUrl: returnTo || '/app',
+      callbackUrl: returnTo || '/dashboard',
       redirect: false,
     });
   };
