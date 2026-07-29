@@ -28,6 +28,9 @@ export const theme = createTheme({
   cssVariables: {
     colorSchemeSelector: "class",
   },
+  typography: {
+    fontFamily: "var(--font-geist-sans), Arial, Helvetica, sans-serif",
+  },
   colorSchemes: {
     light: {
       palette: {
@@ -45,6 +48,7 @@ export const theme = createTheme({
           primary: "#454040",
           secondary: "#605B51",
         },
+        divider: "#36454F",
         error: errorPalette,
         success: successPalette,
         warning: warningPalette,
@@ -54,19 +58,24 @@ export const theme = createTheme({
     dark: {
       palette: {
         background: {
-          default: "#1B3C53",
-          paper: "#234C6A",
+          default: "#131a22",
+          paper: "#1c252e",
         },
         primary: {
-          main: "#715A5A",
+          light: "#73c2ad",
+          main: "#169977",
+          dark: "#0d5c47"
         },
         secondary: {
-          main: "#D2C1B6",
+          light: "#c17ff2",
+          main: "#9829ea",
+          dark: "#5b198c"
         },
         text: {
           primary: "#FFE5BF",
           secondary: "#FFF2DB",
         },
+        divider: "#D3D3D3",
         error: errorPalette,
         success: successPalette,
         warning: warningPalette,

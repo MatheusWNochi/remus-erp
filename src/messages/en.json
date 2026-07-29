@@ -1,8 +1,4 @@
 {
-  "HomePage": {
-    "title": "Welcome to Remus ERP",
-    "description": "Edit src/app/[locale]/page.tsx to get started."
-  },
   "Auth": {
     "Login": {
       "welcomeTitle": "Welcome back",
@@ -18,5 +14,39 @@
         "invalidCredentials": "Invalid email or password."
       }
     }
+  },
+  "Nav": {
+    "dashboard": "Dashboard",
+    "customers": "Customers",
+    "products": "Products",
+    "inventory": "Inventory",
+    "users": "Users",
+    "settings": "Settings",
+    "comingSoon": "Coming soon",
+    "collapseSidebar": "Collapse sidebar",
+    "expandSidebar": "Expand sidebar"
+  },
+  "Settings": {
+    "title": "Settings",
+    "close": "Close",
+    "theme": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "navPosition": "Navigation position",
+    "navTop": "Top",
+    "navSide": "Side"
+  },
+  "UserMenu": {
+    "title": "Account",
+    "close": "Close",
+    "signOut": "Sign out"
+  },
+  "Dashboard": {
+    "greeting": "Welcome, {name}",
+    "subtitle": "Here's a quick overview of your workspace."
+  },
+    "Customers": {
+      "title": "Customers"
   }
 }

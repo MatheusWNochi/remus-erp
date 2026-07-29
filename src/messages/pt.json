@@ -1,0 +1,52 @@
+{
+  "Auth": {
+    "Login": {
+      "welcomeTitle": "Bem-vindo de volta",
+      "welcomeDescription": "Faça login para gerenciar suas operações, acompanhar seus dados e manter seu negócio funcionando bem, tudo em um só lugar.",
+      "title": "Entrar",
+      "subtitle": "Digite suas credenciais para acessar sua conta.",
+      "emailLabel": "E-mail",
+      "passwordLabel": "Senha",
+      "submit": "Entrar",
+      "errors": {
+        "email": "Informe um e-mail válido.",
+        "password": "A senha é obrigatória.",
+        "invalidCredentials": "E-mail ou senha inválidos."
+      }
+    }
+  },
+  "Nav": {
+    "dashboard": "Painel",
+    "customers": "Clientes",
+    "products": "Produtos",
+    "inventory": "Estoque",
+    "users": "Usuários",
+    "settings": "Configurações",
+    "comingSoon": "Em breve",
+    "collapseSidebar": "Recolher menu",
+    "expandSidebar": "Expandir menu"
+  },
+  "Settings": {
+    "title": "Configurações",
+    "close": "Fechar",
+    "theme": "Tema",
+    "light": "Claro",
+    "dark": "Escuro",
+    "system": "Sistema",
+    "navPosition": "Posição da navegação",
+    "navTop": "Topo",
+    "navSide": "Lateral"
+  },
+  "UserMenu": {
+    "title": "Conta",
+    "close": "Fechar",
+    "signOut": "Sair"
+  },
+  "Dashboard": {
+    "greeting": "Bem-vindo, {name}",
+    "subtitle": "Aqui está um resumo rápido do seu espaço de trabalho."
+  },
+  "Customers": {
+    "title": "Clientes"
+  }
+}
