@@ -21,10 +21,14 @@
     "products": "Produtos",
     "inventory": "Estoque",
     "users": "Usuários",
+    "roles": "Papéis",
     "settings": "Configurações",
     "comingSoon": "Em breve",
     "collapseSidebar": "Recolher menu",
-    "expandSidebar": "Expandir menu"
+    "expandSidebar": "Expandir menu",
+    "enterprise": "Empresa",
+    "switchEnterprise": "Trocar empresa",
+    "noEnterprises": "Nenhuma empresa cadastrada"
   },
   "Settings": {
     "title": "Configurações",
@@ -35,18 +39,424 @@
     "system": "Sistema",
     "navPosition": "Posição da navegação",
     "navTop": "Topo",
-    "navSide": "Lateral"
+    "navSide": "Lateral",
+    "language": "Idioma",
+    "portuguese": "Português",
+    "english": "Inglês"
   },
   "UserMenu": {
     "title": "Conta",
     "close": "Fechar",
-    "signOut": "Sair"
+    "signOut": "Sair",
+    "role": "Papel",
+    "developer": "Desenvolvedor"
+  },
+  "Common": {
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "close": "Fechar",
+    "search": "Buscar",
+    "clear": "Limpar",
+    "clearFilters": "Limpar filtros",
+    "columns": "Colunas",
+    "density": "Densidade",
+    "densityOptions": {
+      "compact": "Compacta",
+      "standard": "Padrão",
+      "comfortable": "Confortável"
+    },
+    "selected": "{count, plural, one {# selecionado} other {# selecionados}}",
+    "noResults": "Nenhum resultado",
+    "noResultsDescription": "Nenhum registro corresponde aos filtros aplicados. Tente ajustar a busca.",
+    "actions": "Ações",
+    "edit": "Editar",
+    "delete": "Excluir",
+    "view": "Ver",
+    "create": "Criar",
+    "export": "Exportar CSV",
+    "all": "Todos",
+    "status": "Status",
+    "active": "Ativo",
+    "inactive": "Inativo",
+    "activate": "Ativar",
+    "deactivate": "Inativar",
+    "undo": "Desfazer",
+    "back": "Voltar",
+    "overview": "Visão geral",
+    "history": "Histórico",
+    "details": "Detalhes",
+    "none": "—",
+    "required": "Campo obrigatório",
+    "createdAt": "Criado em",
+    "updatedAt": "Atualizado em",
+    "noPermission": "Você não tem permissão para esta ação",
+    "saved": "Alterações salvas",
+    "deleted": "Registro excluído",
+    "restored": "Exclusão desfeita"
+  },
+  "Errors": {
+    "unauthorized": "Sessão expirada. Entre novamente.",
+    "forbidden": "Você não tem permissão para esta ação.",
+    "notFound": "Registro não encontrado.",
+    "duplicate": "Já existe um registro com esses dados.",
+    "inUse": "Este registro está em uso e não pode ser excluído.",
+    "validation": "Verifique os campos destacados.",
+    "unexpected": "Algo deu errado. Tente novamente."
   },
   "Dashboard": {
     "greeting": "Bem-vindo, {name}",
-    "subtitle": "Aqui está um resumo rápido do seu espaço de trabalho."
+    "subtitle": "Aqui está um resumo rápido do seu espaço de trabalho.",
+    "kpi": {
+      "customers": "Clientes ativos",
+      "products": "Produtos no catálogo",
+      "lowStock": "Itens com estoque baixo",
+      "stockValue": "Valor em estoque",
+      "vsLastMonth": "vs. mês anterior"
+    },
+    "charts": {
+      "movements": "Movimentações de estoque",
+      "movementsSubtitle": "Entradas e saídas por dia",
+      "topProducts": "Top 5 produtos",
+      "topProductsSubtitle": "Por quantidade movimentada",
+      "stockByCategory": "Estoque por categoria",
+      "stockByCategorySubtitle": "Participação na quantidade total",
+      "empty": "Sem dados no período selecionado",
+      "in": "Entradas",
+      "out": "Saídas",
+      "others": "Outros"
+    },
+    "period": {
+      "7d": "7 dias",
+      "30d": "30 dias",
+      "12m": "12 meses"
+    },
+    "lowStockAlert": {
+      "title": "{count, plural, one {# produto abaixo do estoque mínimo} other {# produtos abaixo do estoque mínimo}}",
+      "description": "Reponha o estoque para não interromper as vendas.",
+      "action": "Ver estoque baixo"
+    },
+    "recentActivity": {
+      "title": "Atividade recente",
+      "subtitle": "Últimas movimentações de estoque",
+      "empty": "Nenhuma atividade ainda"
+    },
+    "comingSoon": {
+      "title": "Próximos módulos",
+      "subtitle": "Ainda não construídos neste ambiente"
+    }
   },
   "Customers": {
-    "title": "Clientes"
+    "title": "Clientes",
+    "description": "Cadastre e acompanhe quem compra de você.",
+    "new": "Novo cliente",
+    "edit": "Editar cliente",
+    "newSubtitle": "Preencha os dados do cliente.",
+    "editSubtitle": "Atualize os dados do cliente.",
+    "searchPlaceholder": "Buscar por nome, documento ou e-mail",
+    "empty": "Nenhum cliente cadastrado ainda",
+    "emptyDescription": "Cadastre o primeiro cliente para começar a acompanhar suas vendas.",
+    "notFound": "Cliente não encontrado",
+    "fields": {
+      "name": "Nome",
+      "personType": "Tipo de pessoa",
+      "document": "CPF / CNPJ",
+      "email": "E-mail",
+      "phone": "Telefone",
+      "zipCode": "CEP",
+      "street": "Logradouro",
+      "number": "Número",
+      "complement": "Complemento",
+      "district": "Bairro",
+      "city": "Cidade",
+      "state": "UF",
+      "notes": "Observações",
+      "status": "Status",
+      "location": "Cidade / UF"
+    },
+    "sections": {
+      "identification": "Identificação",
+      "contact": "Contato",
+      "address": "Endereço",
+      "extra": "Observações"
+    },
+    "personType": {
+      "INDIVIDUAL": "Pessoa física",
+      "COMPANY": "Pessoa jurídica"
+    },
+    "status": {
+      "ACTIVE": "Ativo",
+      "INACTIVE": "Inativo"
+    },
+    "filters": {
+      "status": "Status",
+      "state": "UF"
+    },
+    "delete": {
+      "title": "Excluir cliente",
+      "description": "Excluir o cliente <strong>{name}</strong>? Ele sai da listagem, mas o histórico é preservado.",
+      "confirm": "Excluir"
+    },
+    "bulk": {
+      "deactivate": "Inativar selecionados",
+      "activate": "Ativar selecionados",
+      "statusTitle": "Alterar status",
+      "statusDescription": "Alterar o status de {count, plural, one {# cliente} other {# clientes}}?"
+    },
+    "toast": {
+      "created": "Cliente criado",
+      "updated": "Cliente atualizado",
+      "deleted": "Cliente excluído",
+      "restored": "Exclusão desfeita",
+      "statusChanged": "Status atualizado"
+    },
+    "errors": {
+      "name": "Informe o nome do cliente.",
+      "document": "Documento inválido. Confira o CPF ou CNPJ.",
+      "email": "Informe um e-mail válido.",
+      "state": "Use a sigla da UF, com 2 letras."
+    }
+  },
+  "Products": {
+    "title": "Produtos",
+    "description": "Catálogo, preços e níveis de estoque.",
+    "new": "Novo produto",
+    "edit": "Editar produto",
+    "newSubtitle": "Preencha os dados do produto.",
+    "editSubtitle": "Atualize os dados do produto.",
+    "searchPlaceholder": "Buscar por nome ou SKU",
+    "empty": "Nenhum produto cadastrado ainda",
+    "emptyDescription": "Cadastre o primeiro produto para montar seu catálogo.",
+    "notFound": "Produto não encontrado",
+    "fields": {
+      "name": "Nome",
+      "sku": "SKU",
+      "category": "Categoria",
+      "unit": "Unidade",
+      "costPrice": "Preço de custo",
+      "salePrice": "Preço de venda",
+      "margin": "Margem",
+      "minStock": "Estoque mínimo",
+      "maxStock": "Estoque máximo",
+      "description": "Descrição",
+      "status": "Status",
+      "stock": "Estoque atual"
+    },
+    "sections": {
+      "identification": "Identificação",
+      "pricing": "Preços",
+      "stock": "Estoque",
+      "extra": "Descrição"
+    },
+    "status": {
+      "ACTIVE": "Ativo",
+      "INACTIVE": "Inativo"
+    },
+    "filters": {
+      "category": "Categoria",
+      "status": "Status",
+      "lowStock": "Somente estoque baixo"
+    },
+    "generateSku": "Gerar SKU",
+    "noCategory": "Sem categoria",
+    "newCategory": "Criar categoria \"{name}\"",
+    "categoryCreated": "Categoria criada",
+    "marginHint": "Margem de {value} sobre o custo",
+    "delete": {
+      "title": "Excluir produto",
+      "description": "Excluir o produto <strong>{name}</strong>? Ele sai do catálogo, mas o histórico de estoque é preservado.",
+      "withStockWarning": "Este produto possui {quantity} em estoque. Zere o saldo antes de excluir, ou continue mesmo assim.",
+      "confirm": "Excluir"
+    },
+    "bulk": {
+      "deactivate": "Inativar selecionados",
+      "activate": "Ativar selecionados",
+      "statusDescription": "Alterar o status de {count, plural, one {# produto} other {# produtos}}?"
+    },
+    "toast": {
+      "created": "Produto criado",
+      "updated": "Produto atualizado",
+      "deleted": "Produto excluído",
+      "restored": "Exclusão desfeita",
+      "statusChanged": "Status atualizado"
+    },
+    "errors": {
+      "name": "Informe o nome do produto.",
+      "sku": "Informe o SKU.",
+      "skuDuplicate": "Já existe um produto com este SKU.",
+      "price": "Informe um valor maior ou igual a zero.",
+      "maxStock": "O estoque máximo precisa ser maior que o mínimo."
+    }
+  },
+  "Inventory": {
+    "title": "Estoque",
+    "description": "Saldo por produto e histórico de movimentações.",
+    "newMovement": "Nova movimentação",
+    "searchPlaceholder": "Buscar por produto ou SKU",
+    "tabs": {
+      "balance": "Saldo atual",
+      "movements": "Movimentações"
+    },
+    "empty": "Nenhum produto no estoque",
+    "emptyDescription": "Cadastre produtos para começar a controlar o estoque.",
+    "emptyMovements": "Nenhuma movimentação registrada",
+    "emptyMovementsDescription": "Registre uma entrada para iniciar o controle de estoque.",
+    "fields": {
+      "product": "Produto",
+      "sku": "SKU",
+      "category": "Categoria",
+      "quantity": "Quantidade",
+      "minStock": "Mínimo",
+      "maxStock": "Máximo",
+      "level": "Situação",
+      "type": "Tipo",
+      "reason": "Motivo",
+      "reference": "Referência",
+      "date": "Data",
+      "user": "Usuário",
+      "unit": "Unidade"
+    },
+    "type": {
+      "IN": "Entrada",
+      "OUT": "Saída",
+      "ADJUSTMENT": "Ajuste"
+    },
+    "level": {
+      "OK": "Normal",
+      "LOW": "Baixo",
+      "OUT": "Zerado",
+      "EXCESS": "Excesso"
+    },
+    "filters": {
+      "type": "Tipo",
+      "level": "Situação",
+      "product": "Produto",
+      "lowStock": "Somente estoque baixo"
+    },
+    "kpi": {
+      "skus": "Produtos ativos",
+      "lowStock": "Abaixo do mínimo",
+      "outOfStock": "Sem estoque",
+      "stockValue": "Valor em estoque"
+    },
+    "movement": {
+      "title": "Nova movimentação",
+      "subtitle": "Movimentações não podem ser editadas: para corrigir, registre um ajuste.",
+      "submit": "Registrar",
+      "reasonPlaceholder": "Ex.: compra do fornecedor, venda no balcão, perda",
+      "referencePlaceholder": "Ex.: NF 1234",
+      "adjustmentHint": "No ajuste, use quantidade negativa para reduzir o saldo.",
+      "currentBalance": "Saldo atual: {value}",
+      "resultingBalance": "Saldo após o lançamento: {value}"
+    },
+    "lowStockAlert": {
+      "title": "{count, plural, one {# produto abaixo do mínimo} other {# produtos abaixo do mínimo}}",
+      "action": "Registrar entrada"
+    },
+    "charts": {
+      "flow": "Entradas x Saídas",
+      "flowSubtitle": "Por dia, no período selecionado",
+      "productHistory": "Histórico do produto",
+      "empty": "Sem movimentações no período"
+    },
+    "toast": {
+      "created": "Movimentação registrada"
+    },
+    "errors": {
+      "product": "Selecione um produto.",
+      "quantity": "Informe uma quantidade diferente de zero.",
+      "quantityPositive": "A quantidade precisa ser maior que zero.",
+      "negativeBalance": "Esta saída deixaria o saldo negativo ({balance} disponível)."
+    }
+  },
+  "Users": {
+    "title": "Usuários",
+    "description": "Quem tem acesso ao sistema e com qual papel.",
+    "new": "Convidar usuário",
+    "edit": "Editar usuário",
+    "newSubtitle": "O usuário recebe acesso com o papel escolhido.",
+    "editSubtitle": "Atualize o papel e os dados do usuário.",
+    "searchPlaceholder": "Buscar por nome ou e-mail",
+    "empty": "Nenhum usuário cadastrado",
+    "emptyDescription": "Convide alguém para colaborar nesta empresa.",
+    "fields": {
+      "name": "Nome",
+      "firstName": "Nome",
+      "lastName": "Sobrenome",
+      "email": "E-mail",
+      "role": "Papel",
+      "status": "Status",
+      "lastLogin": "Último acesso",
+      "password": "Senha provisória",
+      "never": "Nunca acessou"
+    },
+    "status": {
+      "ACTIVE": "Ativo",
+      "INACTIVE": "Inativo",
+      "INVITED": "Convite pendente"
+    },
+    "filters": {
+      "role": "Papel",
+      "status": "Status"
+    },
+    "passwordHint": "O usuário entra com esta senha e pode trocá-la depois.",
+    "deactivate": {
+      "title": "Desativar usuário",
+      "description": "Desativar <strong>{name}</strong>? A pessoa perde o acesso imediatamente.",
+      "confirm": "Desativar"
+    },
+    "roleChange": {
+      "title": "Alterar papel",
+      "description": "<strong>{name}</strong> passará de <strong>{from}</strong> para <strong>{to}</strong>.",
+      "losing": "Perderá acesso a: {modules}."
+    },
+    "toast": {
+      "created": "Usuário convidado",
+      "updated": "Usuário atualizado",
+      "deactivated": "Usuário desativado",
+      "activated": "Usuário ativado"
+    },
+    "errors": {
+      "firstName": "Informe o nome.",
+      "lastName": "Informe o sobrenome.",
+      "email": "Informe um e-mail válido.",
+      "emailTaken": "Já existe um usuário com este e-mail.",
+      "password": "A senha precisa ter ao menos 8 caracteres.",
+      "role": "Selecione um papel.",
+      "selfDeactivate": "Você não pode desativar a própria conta.",
+      "selfRoleChange": "Você não pode alterar o próprio papel."
+    }
+  },
+  "Roles": {
+    "title": "Papéis e permissões",
+    "description": "O que cada papel pode fazer em cada módulo.",
+    "tabs": {
+      "users": "Usuários",
+      "roles": "Papéis"
+    },
+    "system": "Papel do sistema",
+    "systemHint": "Papéis do sistema não podem ser editados.",
+    "users": "{count, plural, one {# usuário} other {# usuários}}",
+    "matrix": "Matriz de permissões",
+    "module": "Módulo",
+    "empty": "Nenhum papel cadastrado",
+    "modules": {
+      "dashboard": "Painel",
+      "customers": "Clientes",
+      "products": "Produtos",
+      "inventory": "Estoque",
+      "users": "Usuários",
+      "roles": "Papéis"
+    },
+    "actions": {
+      "view": "Ver",
+      "create": "Criar",
+      "edit": "Editar",
+      "delete": "Excluir",
+      "export": "Exportar"
+    },
+    "toast": {
+      "updated": "Permissões atualizadas"
+    }
   }
 }

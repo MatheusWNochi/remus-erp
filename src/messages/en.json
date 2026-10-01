@@ -21,10 +21,14 @@
     "products": "Products",
     "inventory": "Inventory",
     "users": "Users",
+    "roles": "Roles",
     "settings": "Settings",
     "comingSoon": "Coming soon",
     "collapseSidebar": "Collapse sidebar",
-    "expandSidebar": "Expand sidebar"
+    "expandSidebar": "Expand sidebar",
+    "enterprise": "Company",
+    "switchEnterprise": "Switch company",
+    "noEnterprises": "No companies registered"
   },
   "Settings": {
     "title": "Settings",
@@ -35,18 +39,424 @@
     "system": "System",
     "navPosition": "Navigation position",
     "navTop": "Top",
-    "navSide": "Side"
+    "navSide": "Side",
+    "language": "Language",
+    "portuguese": "Portuguese",
+    "english": "English"
   },
   "UserMenu": {
     "title": "Account",
     "close": "Close",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "role": "Role",
+    "developer": "Developer"
+  },
+  "Common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "close": "Close",
+    "search": "Search",
+    "clear": "Clear",
+    "clearFilters": "Clear filters",
+    "columns": "Columns",
+    "density": "Density",
+    "densityOptions": {
+      "compact": "Compact",
+      "standard": "Standard",
+      "comfortable": "Comfortable"
+    },
+    "selected": "{count, plural, one {# selected} other {# selected}}",
+    "noResults": "No results",
+    "noResultsDescription": "No records match the applied filters. Try adjusting your search.",
+    "actions": "Actions",
+    "edit": "Edit",
+    "delete": "Delete",
+    "view": "View",
+    "create": "Create",
+    "export": "Export CSV",
+    "all": "All",
+    "status": "Status",
+    "active": "Active",
+    "inactive": "Inactive",
+    "activate": "Activate",
+    "deactivate": "Deactivate",
+    "undo": "Undo",
+    "back": "Back",
+    "overview": "Overview",
+    "history": "History",
+    "details": "Details",
+    "none": "—",
+    "required": "Required field",
+    "createdAt": "Created at",
+    "updatedAt": "Updated at",
+    "noPermission": "You don't have permission for this action",
+    "saved": "Changes saved",
+    "deleted": "Record deleted",
+    "restored": "Deletion undone"
+  },
+  "Errors": {
+    "unauthorized": "Your session has expired. Please sign in again.",
+    "forbidden": "You don't have permission for this action.",
+    "notFound": "Record not found.",
+    "duplicate": "A record with this data already exists.",
+    "inUse": "This record is in use and can't be deleted.",
+    "validation": "Check the highlighted fields.",
+    "unexpected": "Something went wrong. Please try again."
   },
   "Dashboard": {
     "greeting": "Welcome, {name}",
-    "subtitle": "Here's a quick overview of your workspace."
+    "subtitle": "Here's a quick overview of your workspace.",
+    "kpi": {
+      "customers": "Active customers",
+      "products": "Products in catalog",
+      "lowStock": "Low stock items",
+      "stockValue": "Stock value",
+      "vsLastMonth": "vs. last month"
+    },
+    "charts": {
+      "movements": "Stock movements",
+      "movementsSubtitle": "Stock in and out per day",
+      "topProducts": "Top 5 products",
+      "topProductsSubtitle": "By quantity moved",
+      "stockByCategory": "Stock by category",
+      "stockByCategorySubtitle": "Share of total quantity",
+      "empty": "No data for the selected period",
+      "in": "Stock in",
+      "out": "Stock out",
+      "others": "Other"
+    },
+    "period": {
+      "7d": "7 days",
+      "30d": "30 days",
+      "12m": "12 months"
+    },
+    "lowStockAlert": {
+      "title": "{count, plural, one {# product below minimum stock} other {# products below minimum stock}}",
+      "description": "Restock to keep sales from stalling.",
+      "action": "View low stock"
+    },
+    "recentActivity": {
+      "title": "Recent activity",
+      "subtitle": "Latest stock movements",
+      "empty": "No activity yet"
+    },
+    "comingSoon": {
+      "title": "Upcoming modules",
+      "subtitle": "Not built in this environment yet"
+    }
   },
-    "Customers": {
-      "title": "Customers"
+  "Customers": {
+    "title": "Customers",
+    "description": "Register and keep track of who buys from you.",
+    "new": "New customer",
+    "edit": "Edit customer",
+    "newSubtitle": "Fill in the customer details.",
+    "editSubtitle": "Update the customer details.",
+    "searchPlaceholder": "Search by name, tax ID or email",
+    "empty": "No customers registered yet",
+    "emptyDescription": "Add your first customer to start tracking your sales.",
+    "notFound": "Customer not found",
+    "fields": {
+      "name": "Name",
+      "personType": "Person type",
+      "document": "Tax ID",
+      "email": "Email",
+      "phone": "Phone",
+      "zipCode": "ZIP code",
+      "street": "Street",
+      "number": "Number",
+      "complement": "Unit / suite",
+      "district": "District",
+      "city": "City",
+      "state": "State",
+      "notes": "Notes",
+      "status": "Status",
+      "location": "City / State"
+    },
+    "sections": {
+      "identification": "Identification",
+      "contact": "Contact",
+      "address": "Address",
+      "extra": "Notes"
+    },
+    "personType": {
+      "INDIVIDUAL": "Individual",
+      "COMPANY": "Company"
+    },
+    "status": {
+      "ACTIVE": "Active",
+      "INACTIVE": "Inactive"
+    },
+    "filters": {
+      "status": "Status",
+      "state": "State"
+    },
+    "delete": {
+      "title": "Delete customer",
+      "description": "Delete the customer <strong>{name}</strong>? They are removed from the list, but their history is kept.",
+      "confirm": "Delete"
+    },
+    "bulk": {
+      "deactivate": "Deactivate selected",
+      "activate": "Activate selected",
+      "statusTitle": "Change status",
+      "statusDescription": "Change the status of {count, plural, one {# customer} other {# customers}}?"
+    },
+    "toast": {
+      "created": "Customer created",
+      "updated": "Customer updated",
+      "deleted": "Customer deleted",
+      "restored": "Deletion undone",
+      "statusChanged": "Status updated"
+    },
+    "errors": {
+      "name": "Enter the customer's name.",
+      "document": "Invalid tax ID. Check the number and try again.",
+      "email": "Enter a valid email address.",
+      "state": "Use the 2-letter state code."
+    }
+  },
+  "Products": {
+    "title": "Products",
+    "description": "Catalog, prices and stock levels.",
+    "new": "New product",
+    "edit": "Edit product",
+    "newSubtitle": "Fill in the product details.",
+    "editSubtitle": "Update the product details.",
+    "searchPlaceholder": "Search by name or SKU",
+    "empty": "No products registered yet",
+    "emptyDescription": "Add your first product to build your catalog.",
+    "notFound": "Product not found",
+    "fields": {
+      "name": "Name",
+      "sku": "SKU",
+      "category": "Category",
+      "unit": "Unit",
+      "costPrice": "Cost price",
+      "salePrice": "Sale price",
+      "margin": "Margin",
+      "minStock": "Minimum stock",
+      "maxStock": "Maximum stock",
+      "description": "Description",
+      "status": "Status",
+      "stock": "Current stock"
+    },
+    "sections": {
+      "identification": "Identification",
+      "pricing": "Pricing",
+      "stock": "Stock",
+      "extra": "Description"
+    },
+    "status": {
+      "ACTIVE": "Active",
+      "INACTIVE": "Inactive"
+    },
+    "filters": {
+      "category": "Category",
+      "status": "Status",
+      "lowStock": "Low stock only"
+    },
+    "generateSku": "Generate SKU",
+    "noCategory": "No category",
+    "newCategory": "Create category \"{name}\"",
+    "categoryCreated": "Category created",
+    "marginHint": "{value} margin over cost",
+    "delete": {
+      "title": "Delete product",
+      "description": "Delete the product <strong>{name}</strong>? It is removed from the catalog, but its stock history is kept.",
+      "withStockWarning": "This product has {quantity} in stock. Zero out the balance before deleting, or continue anyway.",
+      "confirm": "Delete"
+    },
+    "bulk": {
+      "deactivate": "Deactivate selected",
+      "activate": "Activate selected",
+      "statusDescription": "Change the status of {count, plural, one {# product} other {# products}}?"
+    },
+    "toast": {
+      "created": "Product created",
+      "updated": "Product updated",
+      "deleted": "Product deleted",
+      "restored": "Deletion undone",
+      "statusChanged": "Status updated"
+    },
+    "errors": {
+      "name": "Enter the product name.",
+      "sku": "Enter the SKU.",
+      "skuDuplicate": "A product with this SKU already exists.",
+      "price": "Enter a value greater than or equal to zero.",
+      "maxStock": "Maximum stock must be greater than minimum stock."
+    }
+  },
+  "Inventory": {
+    "title": "Inventory",
+    "description": "Balance per product and movement history.",
+    "newMovement": "New movement",
+    "searchPlaceholder": "Search by product or SKU",
+    "tabs": {
+      "balance": "Current balance",
+      "movements": "Movements"
+    },
+    "empty": "No products in inventory",
+    "emptyDescription": "Add products to start tracking your stock.",
+    "emptyMovements": "No movements recorded",
+    "emptyMovementsDescription": "Record a stock-in to start tracking your inventory.",
+    "fields": {
+      "product": "Product",
+      "sku": "SKU",
+      "category": "Category",
+      "quantity": "Quantity",
+      "minStock": "Minimum",
+      "maxStock": "Maximum",
+      "level": "Level",
+      "type": "Type",
+      "reason": "Reason",
+      "reference": "Reference",
+      "date": "Date",
+      "user": "User",
+      "unit": "Unit"
+    },
+    "type": {
+      "IN": "Stock in",
+      "OUT": "Stock out",
+      "ADJUSTMENT": "Adjustment"
+    },
+    "level": {
+      "OK": "Normal",
+      "LOW": "Low",
+      "OUT": "Out of stock",
+      "EXCESS": "Excess"
+    },
+    "filters": {
+      "type": "Type",
+      "level": "Level",
+      "product": "Product",
+      "lowStock": "Low stock only"
+    },
+    "kpi": {
+      "skus": "Active products",
+      "lowStock": "Below minimum",
+      "outOfStock": "Out of stock",
+      "stockValue": "Stock value"
+    },
+    "movement": {
+      "title": "New movement",
+      "subtitle": "Movements can't be edited: to correct one, record an adjustment.",
+      "submit": "Record",
+      "reasonPlaceholder": "e.g. supplier purchase, counter sale, loss",
+      "referencePlaceholder": "e.g. Invoice 1234",
+      "adjustmentHint": "For an adjustment, use a negative quantity to reduce the balance.",
+      "currentBalance": "Current balance: {value}",
+      "resultingBalance": "Balance after this entry: {value}"
+    },
+    "lowStockAlert": {
+      "title": "{count, plural, one {# product below minimum} other {# products below minimum}}",
+      "action": "Record stock in"
+    },
+    "charts": {
+      "flow": "Stock in vs. stock out",
+      "flowSubtitle": "Per day, over the selected period",
+      "productHistory": "Product history",
+      "empty": "No movements in this period"
+    },
+    "toast": {
+      "created": "Movement recorded"
+    },
+    "errors": {
+      "product": "Select a product.",
+      "quantity": "Enter a quantity other than zero.",
+      "quantityPositive": "Quantity must be greater than zero.",
+      "negativeBalance": "This stock-out would make the balance negative ({balance} available)."
+    }
+  },
+  "Users": {
+    "title": "Users",
+    "description": "Who has access to the system, and with which role.",
+    "new": "Invite user",
+    "edit": "Edit user",
+    "newSubtitle": "The user gets access with the role you choose.",
+    "editSubtitle": "Update the user's role and details.",
+    "searchPlaceholder": "Search by name or email",
+    "empty": "No users registered",
+    "emptyDescription": "Invite someone to collaborate in this company.",
+    "fields": {
+      "name": "Name",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email",
+      "role": "Role",
+      "status": "Status",
+      "lastLogin": "Last sign-in",
+      "password": "Temporary password",
+      "never": "Never signed in"
+    },
+    "status": {
+      "ACTIVE": "Active",
+      "INACTIVE": "Inactive",
+      "INVITED": "Invite pending"
+    },
+    "filters": {
+      "role": "Role",
+      "status": "Status"
+    },
+    "passwordHint": "The user signs in with this password and can change it later.",
+    "deactivate": {
+      "title": "Deactivate user",
+      "description": "Deactivate <strong>{name}</strong>? They lose access immediately.",
+      "confirm": "Deactivate"
+    },
+    "roleChange": {
+      "title": "Change role",
+      "description": "<strong>{name}</strong> will go from <strong>{from}</strong> to <strong>{to}</strong>.",
+      "losing": "Will lose access to: {modules}."
+    },
+    "toast": {
+      "created": "User invited",
+      "updated": "User updated",
+      "deactivated": "User deactivated",
+      "activated": "User activated"
+    },
+    "errors": {
+      "firstName": "Enter the first name.",
+      "lastName": "Enter the last name.",
+      "email": "Enter a valid email address.",
+      "emailTaken": "A user with this email already exists.",
+      "password": "Password must be at least 8 characters.",
+      "role": "Select a role.",
+      "selfDeactivate": "You can't deactivate your own account.",
+      "selfRoleChange": "You can't change your own role."
+    }
+  },
+  "Roles": {
+    "title": "Roles and permissions",
+    "description": "What each role can do in each module.",
+    "tabs": {
+      "users": "Users",
+      "roles": "Roles"
+    },
+    "system": "System role",
+    "systemHint": "System roles can't be edited.",
+    "users": "{count, plural, one {# user} other {# users}}",
+    "matrix": "Permission matrix",
+    "module": "Module",
+    "empty": "No roles registered",
+    "modules": {
+      "dashboard": "Dashboard",
+      "customers": "Customers",
+      "products": "Products",
+      "inventory": "Inventory",
+      "users": "Users",
+      "roles": "Roles"
+    },
+    "actions": {
+      "view": "View",
+      "create": "Create",
+      "edit": "Edit",
+      "delete": "Delete",
+      "export": "Export"
+    },
+    "toast": {
+      "updated": "Permissions updated"
+    }
   }
 }
