@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from '@/i18n/navigation';
 
@@ -20,22 +20,21 @@ export function GuestGuard({ children }: Props) {
 
   const returnTo = searchParams.get('returnTo') || '/dashboard';
 
-  const checkPermissions = useCallback(() => {
-    if (isPending) {
-      return;
-    }
-
-    if (isAuthenticated) {
-      router.replace(returnTo);
-      return;
-    }
-
+  // Liberar a tela é derivar estado de props, não sincronizar com um sistema
+  // externo: ajustar durante o render evita o salto de um render extra (e o
+  // setState em tempo de efeito que vinha junto). Uma vez liberado, continua
+  // liberado — um login feito aqui não traz a splash de volta.
+  if (isChecking && !isPending && !isAuthenticated) {
     setIsChecking(false);
-  }, [isAuthenticated, isPending, returnTo, router]);
+  }
 
   useEffect(() => {
-    checkPermissions();
-  }, [checkPermissions]);
+    if (isPending || !isAuthenticated) {
+      return;
+    }
+
+    router.replace(returnTo);
+  }, [isAuthenticated, isPending, returnTo, router]);
 
   if (isChecking) {
     return <SplashScreen />;

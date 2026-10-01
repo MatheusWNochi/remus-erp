@@ -22,6 +22,9 @@ export const authorize = async (args: { email: string; password: string }) => {
     throw new Error('Invalid password');
   }
 
+  // O descarte é o objetivo: `password` sai do objeto que volta para o
+  // next-auth, e o resto segue adiante.
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { password: _password, ...safeUser } = user;
 
   return safeUser;
