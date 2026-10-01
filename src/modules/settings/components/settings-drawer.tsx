@@ -1,6 +1,7 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useTransition } from 'react';
+import { useLocale, useTranslations } from 'next-intl';
 import { Icon } from '@iconify/react';
 import { useColorScheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -12,8 +13,15 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Typography from '@mui/material/Typography';
 
+import { usePathname, useRouter } from '@/i18n/navigation';
+import { routing } from '@/i18n/routing';
 import { useSettings } from '../hooks/use-settings';
 import { NavPosition } from '../types';
+
+const LOCALE_LABEL: Record<string, 'portuguese' | 'english'> = {
+  pt: 'portuguese',
+  en: 'english',
+};
 
 type Props = {
   open: boolean;
@@ -24,6 +32,19 @@ export function SettingsDrawer({ open, onClose }: Props) {
   const t = useTranslations('Settings');
   const { mode, setMode } = useColorScheme();
   const { navPosition, setNavPosition } = useSettings();
+
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
+  const [isSwitchingLocale, startLocaleTransition] = useTransition();
+
+  // O locale vive no caminho da URL, então trocar de idioma é navegar para a
+  // mesma rota no outro locale — mantém a tela atual em vez de voltar à home.
+  const changeLocale = (next: string) => {
+    startLocaleTransition(() => {
+      router.replace(pathname, { locale: next });
+    });
+  };
 
   return (
     <Drawer anchor="right" open={open} onClose={onClose} slotProps={{ paper: { sx: { width: 320 } } }}>
@@ -99,6 +120,28 @@ export function SettingsDrawer({ open, onClose }: Props) {
                   <Typography variant="caption">{t('navSide')}</Typography>
                 </Stack>
               </ToggleButton>
+            </ToggleButtonGroup>
+          </Stack>
+
+          <Stack spacing={1.5}>
+            <Typography variant="subtitle2" color="text.secondary">
+              {t('language')}
+            </Typography>
+            <ToggleButtonGroup
+              value={locale}
+              exclusive
+              fullWidth
+              size="small"
+              disabled={isSwitchingLocale}
+              onChange={(_event, value: string | null) => {
+                if (value && value !== locale) changeLocale(value);
+              }}
+            >
+              {routing.locales.map((option) => (
+                <ToggleButton key={option} value={option}>
+                  <Typography variant="caption">{t(LOCALE_LABEL[option] ?? 'language')}</Typography>
+                </ToggleButton>
+              ))}
             </ToggleButtonGroup>
           </Stack>
         </Stack>

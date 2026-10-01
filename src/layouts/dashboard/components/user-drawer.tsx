@@ -11,6 +11,9 @@ import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
+import Chip from '@mui/material/Chip';
+
+import { useAccess } from '@/modules/auth/hooks/use-access';
 import { useAuth } from '@/modules/auth/hooks/use-auth';
 import { UserAvatar } from './user-avatar';
 
@@ -21,7 +24,9 @@ type Props = {
 
 export function UserDrawer({ open, onClose }: Props) {
   const t = useTranslations('UserMenu');
+  const tNav = useTranslations('Nav');
   const { user, signOut } = useAuth();
+  const { access } = useAccess();
   const [signingOut, setSigningOut] = useState(false);
 
   const handleSignOut = async () => {
@@ -52,6 +57,19 @@ export function UserDrawer({ open, onClose }: Props) {
             <Typography variant="body2" color="text.secondary">
               {user?.email}
             </Typography>
+          </Stack>
+
+          <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', justifyContent: 'center', gap: 1 }}>
+            {access?.isDeveloper && (
+              <Chip label={t('developer')} size="small" color="secondary" sx={{ fontWeight: 600 }} />
+            )}
+            {access?.enterpriseName && (
+              <Chip
+                label={`${tNav('enterprise')}: ${access.enterpriseName}`}
+                size="small"
+                variant="outlined"
+              />
+            )}
           </Stack>
         </Stack>
 

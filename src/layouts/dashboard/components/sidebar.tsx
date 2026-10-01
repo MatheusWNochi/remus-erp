@@ -14,6 +14,7 @@ import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 
 import { Link, usePathname } from '@/i18n/navigation';
+import { useAccess } from '@/modules/auth/hooks/use-access';
 import { useSettings } from '@/modules/settings/hooks/use-settings';
 import { navItems } from '../config-nav';
 
@@ -25,8 +26,12 @@ export function Sidebar() {
   const pathname = usePathname();
   const { palette } = useTheme();
   const { sidebarCollapsed, setSidebarCollapsed } = useSettings();
+  const { can } = useAccess();
 
   const width = sidebarCollapsed ? WIDTH_COLLAPSED : WIDTH_EXPANDED;
+
+  // Mesma regra da navbar: sem permissão, o item nem aparece.
+  const visibleItems = navItems.filter((item) => can(item.permission));
 
   return (
     <Drawer
@@ -74,7 +79,7 @@ export function Sidebar() {
       </Stack>
 
       <List sx={{ px: sidebarCollapsed ? 1 : 1.5 }}>
-        {navItems.map((item) => {
+        {visibleItems.map((item) => {
           const selected = pathname === item.path;
           const icon = (
             <>

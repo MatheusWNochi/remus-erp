@@ -4,6 +4,7 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import ThemeRegistry from "@/lib/ThemeRegistry";
+import { SnackbarProvider } from "@/lib/notistack/snackbar-provider";
 import { AuthProvider, SessionProvider } from "@/modules/auth/context/provider";
 import { SettingsProvider } from "@/modules/settings/context/provider";
 import { getServerSession } from "next-auth";
@@ -42,6 +43,10 @@ export default async function RootLayout({ children, params }: Readonly<{
   return (
     <html
       lang={locale}
+      // O InitColorSchemeScript do MUI altera a classe do <html> antes da
+      // hidratação para aplicar o tema sem piscar, então servidor e cliente
+      // divergem de propósito neste nó.
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
@@ -50,7 +55,9 @@ export default async function RootLayout({ children, params }: Readonly<{
             <SessionProvider refetchInterval={5 * 60} session={session}>
               <AuthProvider>
                 <SettingsProvider>
-                  {children}
+                  <SnackbarProvider>
+                    {children}
+                  </SnackbarProvider>
                 </SettingsProvider>
               </AuthProvider>
             </SessionProvider>

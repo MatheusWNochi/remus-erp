@@ -11,8 +11,10 @@ import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 
 import { Link, usePathname } from '@/i18n/navigation';
+import { useAccess } from '@/modules/auth/hooks/use-access';
 import { useAuth } from '@/modules/auth/hooks/use-auth';
 import { navItems } from '../config-nav';
+import { EnterpriseSwitcher } from './enterprise-switcher';
 import { UserAvatar } from './user-avatar';
 
 type Props = {
@@ -25,6 +27,11 @@ export function Navbar({ showNavLinks, onOpenSettings, onOpenUser }: Props) {
   const t = useTranslations('Nav');
   const pathname = usePathname();
   const { user } = useAuth();
+  const { can } = useAccess();
+
+  // Esconder o que o usuário não pode abrir é melhor do que deixar o link
+  // visível e devolver "sem permissão" depois do clique.
+  const visibleItems = navItems.filter((item) => can(item.permission));
 
   return (
     <AppBar
@@ -42,7 +49,7 @@ export function Navbar({ showNavLinks, onOpenSettings, onOpenUser }: Props) {
 
         {showNavLinks && (
           <Stack direction="row" spacing={0.5} sx={{ flex: 1, overflowX: 'auto' }}>
-            {navItems.map((item) => {
+            {visibleItems.map((item) => {
               const buttonSx = {
                 borderRadius: 1.5,
                 px: 1.5,
@@ -80,6 +87,8 @@ export function Navbar({ showNavLinks, onOpenSettings, onOpenUser }: Props) {
         )}
 
         {!showNavLinks && <Stack sx={{ flex: 1 }} />}
+
+        <EnterpriseSwitcher />
 
         <IconButton onClick={onOpenSettings} aria-label={t('settings')}>
           <Icon icon="mdi:cog-outline" width={26} height={26} />
