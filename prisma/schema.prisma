@@ -21,11 +21,15 @@ model authUser {
   createdAt    DateTime  @map("created_at")
   deletedBy    String?   @map("deleted_by") @db.Uuid
   deletedAt    DateTime? @map("deleted_at")
-  enterpriseId String    @map("enterprise_id") @db.Uuid
+  /// Nulo apenas para contas `isDeveloper`, que não pertencem a um tenant e
+  /// escolhem a empresa ativa pelo seletor da navbar.
+  enterpriseId String?   @map("enterprise_id") @db.Uuid
   roleId       String    @map("role_id") @db.Uuid
   isDeveloper  Boolean   @default(false)
+  lastLoginAt  DateTime? @map("last_login_at")
+  status       userStatus @default(ACTIVE)
 
-  enterprise         enterprise   @relation("EnterpriseUsers", fields: [enterpriseId], references: [id])
+  enterprise         enterprise?  @relation("EnterpriseUsers", fields: [enterpriseId], references: [id])
   role               authRole     @relation(fields: [roleId], references: [id])
   deletedByUser      authUser?    @relation("UserDeletedBy", fields: [deletedBy], references: [id])
   deletedUsers       authUser[]   @relation("UserDeletedBy")
@@ -51,8 +55,11 @@ model enterprise {
 }
 
 model authRole {
-  id   String @id @db.Uuid
-  name String
+  id           String  @id @db.Uuid
+  name         String
+  description  String?
+  isSystem     Boolean @default(false) @map("is_system")
+  enterpriseId String? @map("enterprise_id") @db.Uuid
 
   users           authUser[]
   rolePermissions rolePermissions[]
@@ -61,8 +68,11 @@ model authRole {
 }
 
 model authPermission {
-  id   String @id @db.Uuid
-  code String
+  id          String  @id @db.Uuid
+  code        String  @unique
+  module      String
+  action      String
+  description String?
 
   rolePermissions rolePermissions[]
 
@@ -70,12 +80,143 @@ model authPermission {
 }
 
 model rolePermissions {
-  roleId       String @db.Uuid
-  permissionId String @db.Uuid
+  roleId       String @map("roleId") @db.Uuid
+  permissionId String @map("permissionId") @db.Uuid
 
   role       authRole       @relation(fields: [roleId], references: [id])
   permission authPermission @relation(fields: [permissionId], references: [id])
 
   @@unique([roleId, permissionId])
   @@map("auth_role_permission")
+}
+
+// ---------------------------------------------------------------------------
+// V1 — Núcleo operacional
+// ---------------------------------------------------------------------------
+
+enum userStatus {
+  ACTIVE
+  INACTIVE
+  INVITED
+
+  @@map("user_status")
+}
+
+enum personType {
+  INDIVIDUAL
+  COMPANY
+
+  @@map("person_type")
+}
+
+enum customerStatus {
+  ACTIVE
+  INACTIVE
+
+  @@map("customer_status")
+}
+
+enum productStatus {
+  ACTIVE
+  INACTIVE
+
+  @@map("product_status")
+}
+
+enum stockMovementType {
+  IN
+  OUT
+  ADJUSTMENT
+
+  @@map("stock_movement_type")
+}
+
+model customer {
+  id           String         @id @default(uuid(7)) @db.Uuid
+  enterpriseId String         @map("enterprise_id") @db.Uuid
+  name         String
+  personType   personType     @default(COMPANY) @map("person_type")
+  document     String?
+  email        String?
+  phone        String?
+  zipCode      String?        @map("zip_code")
+  street       String?
+  number       String?
+  complement   String?
+  district     String?
+  city         String?
+  state        String?        @db.VarChar(2)
+  notes        String?
+  status       customerStatus @default(ACTIVE)
+  createdAt    DateTime       @default(now()) @map("created_at")
+  createdBy    String?        @map("created_by") @db.Uuid
+  updatedAt    DateTime       @default(now()) @updatedAt @map("updated_at")
+  deletedAt    DateTime?      @map("deleted_at")
+  deletedBy    String?        @map("deleted_by") @db.Uuid
+
+  @@index([enterpriseId, deletedAt])
+  @@index([enterpriseId, status])
+  @@map("customer")
+}
+
+model productCategory {
+  id           String    @id @default(uuid(7)) @db.Uuid
+  enterpriseId String    @map("enterprise_id") @db.Uuid
+  name         String
+  createdAt    DateTime  @default(now()) @map("created_at")
+  createdBy    String?   @map("created_by") @db.Uuid
+  deletedAt    DateTime? @map("deleted_at")
+  deletedBy    String?   @map("deleted_by") @db.Uuid
+
+  products product[]
+
+  @@index([enterpriseId, deletedAt])
+  @@map("product_category")
+}
+
+model product {
+  id           String        @id @default(uuid(7)) @db.Uuid
+  enterpriseId String        @map("enterprise_id") @db.Uuid
+  name         String
+  sku          String
+  categoryId   String?       @map("category_id") @db.Uuid
+  unit         String        @default("UN")
+  costPrice    Decimal       @default(0) @map("cost_price") @db.Decimal(14, 2)
+  salePrice    Decimal       @default(0) @map("sale_price") @db.Decimal(14, 2)
+  minStock     Decimal       @default(0) @map("min_stock") @db.Decimal(14, 3)
+  maxStock     Decimal?      @map("max_stock") @db.Decimal(14, 3)
+  description  String?
+  status       productStatus @default(ACTIVE)
+  createdAt    DateTime      @default(now()) @map("created_at")
+  createdBy    String?       @map("created_by") @db.Uuid
+  updatedAt    DateTime      @default(now()) @updatedAt @map("updated_at")
+  deletedAt    DateTime?     @map("deleted_at")
+  deletedBy    String?       @map("deleted_by") @db.Uuid
+
+  category  productCategory? @relation(fields: [categoryId], references: [id])
+  movements stockMovement[]
+
+  @@index([enterpriseId, deletedAt])
+  @@index([enterpriseId, categoryId])
+  @@map("product")
+}
+
+/// Append-only: corrigir um erro gera um novo lançamento de ajuste,
+/// nunca um UPDATE/DELETE. O saldo é sempre derivado da soma destas linhas.
+model stockMovement {
+  id           String            @id @default(uuid(7)) @db.Uuid
+  enterpriseId String            @map("enterprise_id") @db.Uuid
+  productId    String            @map("product_id") @db.Uuid
+  type         stockMovementType
+  quantity     Decimal           @db.Decimal(14, 3)
+  reason       String?
+  reference    String?
+  createdAt    DateTime          @default(now()) @map("created_at")
+  createdBy    String?           @map("created_by") @db.Uuid
+
+  product product @relation(fields: [productId], references: [id])
+
+  @@index([enterpriseId, productId, createdAt])
+  @@index([enterpriseId, createdAt])
+  @@map("stock_movement")
 }
