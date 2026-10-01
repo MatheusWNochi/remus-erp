@@ -1,5 +1,4 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 /node_modules
 /documentation
@@ -40,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+/src/generated/prisma
+
+#claude
+.claude/
+.agents/
+skills-lock.json*
+.windsurf/
